@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic UI Toggle</title>
+    <style>
+        /* Responsive Setup */
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f2f5;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        /* 1. Hide karne wali class */
+        .hidden {
+            display: none;
+        }
+
+        /* 2. Style toggle karne wali class */
+        .highlight-mode {
+            background-color: #fff3cd;
+            border: 2px solid #ffc107;
+            transform: scale(1.05);
+            transition: all 0.3s ease;
+        }
+
+        .content-box {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+            background: #e9ecef;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+        }
+
+        button {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .hide-btn { background: #dc3545; color: white; }
+        .toggle-btn { background: #0d6efd; color: white; }
+        button:hover { opacity: 0.9; }
+    </style>
+</head>
+<body>
+<h2> Hide HTML element using JS & toggle CSS dynamically</h2>
+    <div class="card" id="mainCard">
+        <h2>UI Controls</h2>
+        
+        <div id="infoBox" class="content-box">
+            <p>Main ek important message hoon!</p>
+        </div>
+
+        <div class="btn-group">
+            <button class="hide-btn" onclick="toggleVisibility()">Show / Hide Message</button>
+            
+            <button class="toggle-btn" onclick="toggleStyle()">Toggle Card Highlight</button>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * 1. Show/Hide ka sabse simple tarika
+         */
+        function toggleVisibility() {
+            const box = document.getElementById('infoBox');
+            
+            // classList.toggle apne aap check karta hai:
+            // Agar 'hidden' class hai toh hata dega, nahi hai toh laga dega.
+            box.classList.toggle('hidden');
+        }
+
+        /**
+         * 2. Pure element ki design badalne ke liye
+         */
+        function toggleStyle() {
+            const card = document.querySelector('#mainCard');
+            
+            // Dynamic CSS class toggle
+            card.classList.toggle('highlight-mode');
+        }
+    </script>
+
+</body>
+</html>
